@@ -19,7 +19,7 @@ if ($playersmanager->exists($_POST['player_post'])) // If the user exists, we ge
     $player->bet($bet_post);
     $playersmanager->update($player);
 //   $spacemen_manager->update($user);
-//   echo '<br> Now, user '.$player->name().' has '.$player->chips().' chips';
+//   echo '<br> Now, user '.$player->name().'f has '.$player->chips().' chips';
 
 
 
