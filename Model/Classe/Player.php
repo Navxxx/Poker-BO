@@ -60,6 +60,15 @@ class Player implements \JsonSerializable
     $this->_dealer = 0;
   }
 
+
+  //
+  public function susbtractbettocash()
+  {
+
+    $this->_cash -= $this->_chips;
+  }
+
+
   // GETTERS //
   
   public function iduser()
