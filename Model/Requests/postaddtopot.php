@@ -35,7 +35,7 @@ if (count($players) > 1) {
     foreach ($players as $player) {
         $player->susbtractbettocash($player->chips());
         $player->bet(0);
-        $player->actionunfold();
+        // $player->actionunfold();
         $playersmanager->update($player);
     } 
 
