@@ -34,7 +34,7 @@ class PlayersManager
       // if the parameter is an integer, it's considered as an id and return an object Character
       if (is_int($info))
       {
-        $q = $this->_db->query('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players WHERE iduser = '.$info);
+        $q = $this->_db->query('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players WHERE iduser = '.$info);
         $data = $q->fetch(PDO::FETCH_ASSOC);
         return new Player($data);
       }
@@ -46,7 +46,7 @@ class PlayersManager
       if (is_string($userName) AND is_string($password))
       {
         // Prepare the request
-        $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players
+        $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players
         WHERE name = :name AND password = :password');
 
         $q->bindValue(':name', $userName, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ class PlayersManager
   public function getList()
   {
     $players = [];
-    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players ORDER BY iduser');
+    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players ORDER BY iduser');
     $q->execute();
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -85,7 +85,7 @@ class PlayersManager
   {
     $players = [];
     // user
-    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players WHERE sitnumber = '.$usersitnumber.' ORDER BY iduser ');
+    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players WHERE sitnumber = '.$usersitnumber.' ORDER BY iduser ');
     $q->execute();
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -94,7 +94,7 @@ class PlayersManager
     }
 
     // players after the user
-    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players WHERE sitnumber > '.$usersitnumber.' ORDER BY iduser ');
+    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players WHERE sitnumber > '.$usersitnumber.' ORDER BY iduser ');
     $q->execute();
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -103,7 +103,7 @@ class PlayersManager
     }
 
     // players before the user
-    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players WHERE sitnumber < '.$usersitnumber.' ORDER BY iduser ');
+    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players WHERE sitnumber < '.$usersitnumber.' ORDER BY iduser ');
     $q->execute();
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -117,7 +117,7 @@ class PlayersManager
   public function getDealer()
   {
     $players = [];
-    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips FROM Players WHERE dealer = 1 LIMIT 1');
+    $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players WHERE dealer = 1 LIMIT 1');
     $q->execute();
 
     while ($data = $q->fetch(PDO::FETCH_ASSOC))
@@ -135,7 +135,8 @@ class PlayersManager
     cash = :cash,
     dealer = :dealer,
     fold = :fold,
-    chips = :chips
+    chips = :chips,
+    gain = :gain
     WHERE iduser = :iduser');
 
     $q->bindValue(':iduser', $player->iduser(), PDO::PARAM_INT);
@@ -143,6 +144,7 @@ class PlayersManager
     $q->bindValue(':dealer', $player->dealer(), PDO::PARAM_INT);
     $q->bindValue(':fold', $player->fold(), PDO::PARAM_INT);
     $q->bindValue(':chips', $player->chips(), PDO::PARAM_INT);
+    $q->bindValue(':gain', $player->gain(), PDO::PARAM_INT);
 
     // Execute the request
     $q->execute();

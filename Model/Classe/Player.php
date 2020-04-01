@@ -7,7 +7,8 @@ class Player implements \JsonSerializable
           $_cash, 
           $_dealer, 
           $_fold,
-          $_chips;
+          $_chips,
+          $_gain;
 
   // We hydrate the object just after its creation
   public function __construct(array $donnees)
@@ -68,6 +69,17 @@ class Player implements \JsonSerializable
     $this->_cash -= $this->_chips;
   }
 
+  // actiongain function
+  public function actiongain($amount)
+  { 
+    $this->_gain = $amount;
+  }
+  
+  // clear gain function
+  public function cleargain()
+  { 
+    $this->_gain = 0;
+  }
 
   // GETTERS //
   
@@ -104,6 +116,11 @@ class Player implements \JsonSerializable
   public function chips()
   {
     return $this->_chips;
+  }
+
+  public function gain()
+  {
+    return $this->_gain;
   }
 
 // SETTERS
@@ -179,6 +196,12 @@ class Player implements \JsonSerializable
     // {
       $this->_chips = $chips;
     // }
+  }
+
+  public function setGain($gain)
+  {
+    $gain = (int) $gain;
+    $this->_gain = $gain;
   }
 
   public function jsonSerialize()
