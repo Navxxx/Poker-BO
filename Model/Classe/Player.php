@@ -81,6 +81,12 @@ class Player implements \JsonSerializable
     $this->_gain = 0;
   }
 
+  public function winmoney($amount)
+  { 
+    $amount = (int) $amount;
+    $this->_cash += $amount;
+  }
+
   // GETTERS //
   
   public function iduser()
