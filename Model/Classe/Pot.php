@@ -2,7 +2,8 @@
 class Pot implements \JsonSerializable
 {
   private $_idpot, // character id
-          $_amount;
+          $_amount,
+          $_window;
 
   // We hydrate the object just after its creation
   public function __construct(array $donnees)
@@ -50,6 +51,11 @@ public function clearpot()
     return $this->_amount;
   }
 
+  public function window()
+{
+  return $this->_window;
+}
+
 
 // SETTERS
 //The first letter of the attribut must be in uppercase
@@ -69,7 +75,7 @@ public function clearpot()
   // The variable id is an integer
   public function setAmount($amount)
   {
-    $dealer = (int) $amount;
+    $amount = (int) $amount;
 
     // if ($id_user > 0)
     // {
@@ -77,6 +83,16 @@ public function clearpot()
     // }
   }
 
+    // The variable id is an integer
+    public function setWindow($window)
+    {
+      $window = (int) $window;
+  
+      // if ($id_user > 0)
+      // {
+        $this->_window = $window;
+      // }
+    }
 
   public function jsonSerialize()
   {

@@ -15,7 +15,7 @@ class PotsManager
     // if the parameter is an integer, it's considered as an id and return an object Character
     if (is_int($info))
     {
-      $q = $this->_db->query('SELECT idpot, amount FROM Pots WHERE idpot = '.$info);
+      $q = $this->_db->query('SELECT idpot, amount, window FROM Pots WHERE idpot = '.$info);
       $data = $q->fetch(PDO::FETCH_ASSOC);
       return new Pot($data);
     }
@@ -25,11 +25,14 @@ class PotsManager
   {
     // Prepare the request
     $q = $this->_db->prepare('UPDATE Pots SET 
-    amount = :amount
+    amount = :amount,
+    window = :window
     WHERE idpot = :idpot');
 
     $q->bindValue(':idpot', $pot->idpot(), PDO::PARAM_INT);
     $q->bindValue(':amount', $pot->amount(), PDO::PARAM_INT);
+    $q->bindValue(':window', $pot->window(), PDO::PARAM_INT);
+
 
     // Execute the request
     $q->execute();
