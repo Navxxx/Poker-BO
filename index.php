@@ -11,7 +11,7 @@ $playersmanager = new PlayersManager($db); // Creation of spacemen manager
 <fieldset>
   <legend>Currently <?= $playersmanager->count() ?> spacemen on Krytpon : </legend>
   <p>
-
+efefe
   <?php
       // $users = $usersmanager->getList();
       // foreach ($user as $users)
