@@ -1,6 +1,7 @@
 <?php
 //  header("Access-Control-Allow-Origin: *");
- header(" Access-Control-Allow-Origin: https://t3r3nc3.netlify.com ");
+//  header(" Access-Control-Allow-Origin: https://t3r3nc3.netlify.com ");
+header(" Access-Control-Allow-Origin: 157.230.120.63:443 ");
 
 function chargerClasse($classe)
 {
