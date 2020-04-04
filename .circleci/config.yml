@@ -5,7 +5,7 @@ jobs:
     machine:
       enabled: true
     steps:
-      - checkout
+      - checkout:
           path: ~/poker-bo
       - run:
           name: ls
