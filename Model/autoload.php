@@ -1,5 +1,7 @@
 <?php
- header("Access-Control-Allow-Origin: *");
+//  header("Access-Control-Allow-Origin: *");
+ header(" Access-Control-Allow-Origin: https://t3r3nc3.netlify.com ");
+
 function chargerClasse($classe)
 {
   //require 'Classe/' .$classe . '.php'; // On inclut la classe correspondante au paramètre passé.
