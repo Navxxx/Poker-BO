@@ -1,5 +1,5 @@
 <?php
-
+ header("Access-Control-Allow-Origin: *");
 function chargerClasse($classe)
 {
   //require 'Classe/' .$classe . '.php'; // On inclut la classe correspondante au paramètre passé.
