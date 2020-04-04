@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Deploy Over SCP
           command: |
-            scp -r * "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
+            scp -r . "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
 workflows:
   version: 2
   build_and_deploy:
