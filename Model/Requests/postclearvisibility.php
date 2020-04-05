@@ -13,9 +13,10 @@ foreach ($cards as $card) {
 
     $card->clearvisibility();
     // $cardsmanager->update($card);
+
     array_push($newSort, $card->sort());
 
-
+}
     // $player->bet($bet_post);
     // $playersmanager->update($player);
     shuffle($newSort);
