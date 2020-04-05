@@ -41,21 +41,21 @@ class PlayersManager
     }
   
     // Execute a request to get an object Character hydrated with all the data in the db (id, progression, action_progression ...)
-    public function checkId($userName, $password )
+    public function checkId($password )
     {
-      if (is_string($userName) AND is_string($password))
-      {
+      // if (is_string($userName) AND is_string($password))
+      // {
         // Prepare the request
         $q = $this->_db->prepare('SELECT iduser, name, sitnumber, cash, dealer, fold, chips, gain FROM Players
-        WHERE name = :name AND password = :password');
+        WHERE password = :password');
 
-        $q->bindValue(':name', $userName, PDO::PARAM_STR);
+        // $q->bindValue(':name', $userName, PDO::PARAM_STR);
         $q->bindValue(':password', $password, PDO::PARAM_STR);
 
         $q->execute();
         $data = $q->fetch(PDO::FETCH_ASSOC);
         return $data;
-      }
+      // }
       //////
       // if the parameter is an integer, it's considered as an id and return an object Character
       // if (is_string($userName))
