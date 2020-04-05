@@ -17,6 +17,9 @@ if ($playersmanager->exists($_POST['player_post'])) // If the user exists, we ge
 //   echo '<br> User '.$player->name().' had '.$player->chips().' chips';
 //   $user->looseOxy($oxy_post);
     $player->winmoney($money_post);
+
+      $player->cleargain();
+
     $playersmanager->update($player);
 //   $spacemen_manager->update($user);
 //   echo '<br> Now, user '.$player->name().'f has '.$player->chips().' chips';
